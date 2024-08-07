@@ -1,0 +1,26 @@
+[workspace]
+members = [
+    "fractal",
+    "engine",
+    "macros",
+    "plugin",
+    "script",
+    "server",
+    "stream",
+    "client"
+]
+resolver = "2"
+
+[workspace.package]
+version = "0.1.0"
+
+[workspace.dependencies]
+thiserror = { version = "*" }
+priority-queue = { version = "2.0.3" }
+
+axum = { version = "0.7.5", features = ["json", "http1", "tokio"]}
+tokio = { version = "1.38.1", features = ["full"] }
+tower = { version = "0.4.13", features = ["steer"] }
+
+tonic = "0.12.1"
+tonic-build = "0.12.1"

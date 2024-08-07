@@ -1,0 +1,15 @@
+[package]
+name = "server"
+edition = "2021"
+version.workspace = true
+
+[dependencies]
+thiserror.workspace = true
+priority-queue.workspace = true
+
+tokio.workspace = true
+tower.workspace = true
+tonic.workspace = true
+
+[build-dependencies]
+tonic-build.workspace = true

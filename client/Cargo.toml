@@ -1,0 +1,7 @@
+[package]
+name = "webview"
+edition = "2021"
+version.workspace = true
+
+[dependencies]
+server ={ path = "../server" }

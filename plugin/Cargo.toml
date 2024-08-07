@@ -1,0 +1,9 @@
+[package]
+name = "plugin"
+edition = "2021"
+version.workspace = true
+
+[dependencies]
+wasmtime = "*"
+uuid = { version = "*", features = ["v4"] }
+thiserror.workspace = true
