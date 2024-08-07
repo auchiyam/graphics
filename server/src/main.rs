@@ -22,7 +22,6 @@ use dispatcher::{EventLayer, Hello};
 #[tokio::main]
 async fn main() -> Result<(), Box<dyn std::error::Error>> {
     let addr = SocketAddr::from(([0, 0, 0, 0], 3000));
-
     let layer = tower::ServiceBuilder::new().layer(EventLayer);
 
     Server::builder()
