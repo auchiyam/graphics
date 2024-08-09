@@ -1,0 +1,25 @@
+package plugin:node;
+
+interface metadata {
+    record metadata {
+        input-type: list<string>,
+        output-type: list<string>,
+        display-name: string
+    }
+
+    get-metadata: func() -> metadata;
+}
+
+interface runner {
+    type output = list<list<u8>>;
+    resource state {
+        constructor();
+        add-input: func(bytes: list<u8>) -> result<_, string>;
+        run: func() -> output;
+    }
+}
+
+world node {
+    export metadata;
+    export runner;
+}
