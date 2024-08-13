@@ -1,0 +1,69 @@
+syntax = "proto3";
+package renderer;
+
+service Renderer {
+    rpc LoadScript (LoadScript.Request) returns (LoadScript.Result);
+    rpc BuildEngine (BuildEngine.Request) returns (BuildEngine.Result);
+
+    rpc EvaluateFrame (EvaluateFrame.Request) returns (EvaluateFrame.Result);
+    rpc StreamFrame (stream StreamFrame.Request) returns (stream StreamFrame.Result);
+}
+
+message LoadScript {
+    message Uuid {
+        uint64 left = 1;
+        uint64 right = 2;
+    }
+
+    message Address {
+        Uuid id = 1;
+        uint32 port = 2;
+    }
+
+    message Node {
+        repeated Address input = 1;
+        repeated Address output = 2;
+        Uuid id = 3;
+    }
+
+    message Request {
+        repeated Node nodes = 1;
+        string message = 2;
+    }
+
+    message Result {
+        string code = 1;
+        string message = 2;
+    }
+}
+
+message BuildEngine {
+    message Request {
+        string message = 1;
+    }
+
+    message Result {
+        string code = 1;
+        string message = 2;
+    }
+}
+
+message EvaluateFrame {
+    message Request {
+        double t = 1;
+    }
+
+    message Result {
+        string code = 1;
+    }
+}
+
+message StreamFrame {
+    message Request {
+        double t = 1;
+    }
+
+    message Result {
+        string code = 1;
+    }
+}

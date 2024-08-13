@@ -7,3 +7,5 @@ version.workspace = true
 wasmtime = "*"
 uuid = { version = "*", features = ["v4"] }
 thiserror.workspace = true
+tracing.workspace = true
+anyhow.workspace = true

@@ -4,7 +4,8 @@
 //!
 //! Each modules are responsible for implementing single .proto files.
 
-pub mod helloworld;
+mod helloworld;
+mod renderer;
 
 use std::{
     future::Future,
@@ -14,6 +15,7 @@ use std::{
 
 pub use helloworld::Hello;
 use priority_queue::PriorityQueue;
+pub use renderer::RendererImpl;
 use tower::{Layer, Service};
 
 pub static mut EVENT_QUEUE: OnceLock<EventQueue> = OnceLock::new();

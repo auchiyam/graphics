@@ -17,7 +17,7 @@ use std::net::SocketAddr;
 
 use tonic::transport::Server;
 
-use dispatcher::{EventLayer, Hello};
+use dispatcher::{EventLayer, Hello, RendererImpl};
 
 #[tokio::main]
 async fn main() -> Result<(), Box<dyn std::error::Error>> {
@@ -27,6 +27,7 @@ async fn main() -> Result<(), Box<dyn std::error::Error>> {
     Server::builder()
         .layer(layer)
         .add_service(Hello::service())
+        .add_service(RendererImpl::service())
         .serve(addr)
         .await?;
 

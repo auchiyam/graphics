@@ -1,6 +1,8 @@
 package plugin:node;
 
 interface metadata {
+    use memory.{uuid};
+
     record metadata {
         input-type: list<string>,
         output-type: list<string>,
@@ -8,18 +10,42 @@ interface metadata {
     }
 
     get-metadata: func() -> metadata;
+    set-id: func(id: uuid);
 }
 
 interface runner {
-    type output = list<list<u8>>;
-    resource state {
+    run: func() -> result<_, string>;
+}
+
+interface memory {
+    record uuid {
+        left: u64,
+        right: u64
+    }
+
+    enum direction {
+        input,
+        output
+    }
+
+    record address {
+        dir: direction,
+        id: string,
+        port: u16
+    }
+
+    resource manager {
         constructor();
-        add-input: func(bytes: list<u8>) -> result<_, string>;
-        run: func() -> output;
+        connect-port: func(src: address, dest: address) -> result<_, string>;
+        allocate-id: func() -> uuid;
+        read: func(src: address) -> list<u8>;
+        write: func(dest: address, data: list<u8>);
+        flush: func() -> result<_, string>;
     }
 }
 
 world node {
+    import memory;
     export metadata;
     export runner;
 }
